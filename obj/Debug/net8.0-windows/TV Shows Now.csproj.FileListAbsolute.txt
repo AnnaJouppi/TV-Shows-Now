@@ -1,0 +1,26 @@
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\TV Shows Now.exe
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\TV Shows Now.deps.json
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\TV Shows Now.runtimeconfig.json
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\TV Shows Now.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\TV Shows Now.pdb
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.csproj.AssemblyReference.cache
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV_Shows_Now.Form1.resources
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV_Shows_Now.Properties.Resources.resources
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.csproj.GenerateResource.cache
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.AssemblyInfoInputs.cache
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.AssemblyInfo.cs
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.csproj.CoreCompileInputs.cache
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.csproj.CopyComplete
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.dll
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\refint\TV Shows Now.dll
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.pdb
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.genruntimeconfig.cache
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\ref\TV Shows Now.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Core.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.dll
