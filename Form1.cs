@@ -16,7 +16,7 @@ using System.DirectoryServices;
 namespace TV_Shows_Now
 {
     public partial class Form1 : Form
-    {   // asetetaan client ja show jo tänne, jotta niitä voi käyttää joka funktiossa
+    {   // setting up the client
         private HttpClient client;
         private Show? show;
 
@@ -25,38 +25,40 @@ namespace TV_Shows_Now
             InitializeComponent();
             client = new HttpClient();
         }
-        // muutetaan tietyt osat näkymättömiksi kun appi aukeaa
+        
+        // changing certain parts as invisible when the app launches
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.Visible = false;
             description.Visible = false;
             webBrowser1.Visible = false;
+
             castName1.Visible = false;
             castName2.Visible = false;
             castName3.Visible = false;
             castName4.Visible = false;
+
             labelStarring.Visible = false;
             pictureBoxShow.Enabled = false;
             officialWebsiteLink.Visible = false;
+
             languageText.Visible = false;
             labelLanguage.Visible = false;
-
             helpText.Visible = false;
 
         }
-        
-       
 
-        // Funktio, joka hakee tiedot API:lta
+        // Getting shows from API
         public async Task<List<SearchResult>> SearchShows(string query)
         {
 
-            {   // Laitetaan kutsu apille, argumenttina teksti, jonka käyttäjä syöttää hakukenttään
+            {   
+                // Calling the api with a text that user inputs in the search field
                 var response = await client.GetStringAsync($"https://api.tvmaze.com/search/shows?q={query}");
 
-                // Deserialisoidaan eli muutetaan JSON-string objektiksi
+                // Deserialialing JSON string into an object
                 var searchResult = JsonConvert.DeserializeObject<List<SearchResult>>(response);
-                // Jos searchResult on null, palautetaan tyhjä lista ettei tule erroreita
+                // Dealing with possible nulls
                 if (searchResult == null)
                 {
                     return new List<SearchResult>();
@@ -66,7 +68,7 @@ namespace TV_Shows_Now
             }
         }
 
-        // Haetaan näyttelijöiden tiedot
+        // Retrieving cast information
         public async Task<List<Cast>> GetShowCast(int? showId)
         {
             var response = await client.GetStringAsync($"https://api.tvmaze.com/shows/{showId}/cast");
@@ -79,25 +81,24 @@ namespace TV_Shows_Now
 
             return cast;
         }
-       
-        
 
-        // Napin klikkaus
+        // Clicking the search button
         private async void button1_Click(object sender, EventArgs e)
 
-        {   // Tallennetaan käyttäjän antama teksti tekstilaatikosta kun nappia painetaan
+        {   
+            // Saving user's input text as button is clicked
             string query = textBox1.Text;
             dataGridView1.Visible = true;
             helpText.Visible = true;
 
-            // jos query-string ei ole tyhjä eikä null
+            
+            // If query string is not empty or null
             if (!string.IsNullOrEmpty(query))
             {
                 var searchResults = await SearchShows(query);
 
                 
-
-                // Luodaan lista show-objekteja
+                // Creating a list of show objects
                 var shows = searchResults.Select(sr => sr.Show).ToList();
 
                 dataGridView1.DataSource = shows.Select(s => new {
@@ -127,11 +128,12 @@ namespace TV_Shows_Now
 
         public async void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            // Tarkistetaan onko klikkaus gridin headerissa, ei tehdä mitään jos on
+            
+            // Checking if user clicks the grid's header, returns nothing if true
             if (e.RowIndex == -1 || e.ColumnIndex == -1) { return; }
 
-            // Hae ekan ohjelman nimi ekasta kolumnista ja muuta se stringiksi
+            
+            // Retrieve show's name from the first column and turn it into a string
             object cellValue = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
             string showName = (cellValue as string ?? "");
 
@@ -141,7 +143,8 @@ namespace TV_Shows_Now
             }
             else
             {
-                // Etsitään yksi show, jotta saadaan sen näyttelijät
+                // 
+                // Searching for a show to get its cast
                 var response = await client.GetStringAsync($"https://api.tvmaze.com/singlesearch/shows?q={showName}");
                 show = JsonConvert.DeserializeObject<Show>(response);
             }
@@ -155,13 +158,13 @@ namespace TV_Shows_Now
                 noNullShow.Cast = castResults;
             }
             }
-            // Muuta UI:n kohteet näkyviksi
+            // Change UI elements visible
 
             description.Visible = true;
             webBrowser1.Visible = true;
             if (show != null)
 
-            { // Käytetään WebView2
+            { // Usinng WebView2 to display show description
                 await webBrowser1.EnsureCoreWebView2Async(null);
                 webBrowser1.NavigateToString(show.Summary);
             }
@@ -175,10 +178,7 @@ namespace TV_Shows_Now
             }
             officialWebsiteLink.Visible = true;
 
-
-
-
-            // Näytä näyttelijöiden nimet vain silloin kun ne ovat show.Castissa, muuten tyhjä string
+            // Only shows cast names when they are in show.Cast, otherwise show an empty string
             castName1.Text = "";
             castName2.Text = "";
             castName3.Text = "";
@@ -210,7 +210,8 @@ namespace TV_Shows_Now
                     }
                 }
             }
-            // Jos ohjelmalla ei ole nettisivua, linkkiä ei näytetä
+            
+            // If the show has no website, the link is hidden
             if (show != null) { 
             if (show.OfficialSite == null)
             {
@@ -218,7 +219,7 @@ namespace TV_Shows_Now
             }
 }
 
-            // Näytä kuva pictureBoxissa
+            // Display show image in pictureBox
             if (show != null)
             {
                 if (show.Image != null && !string.IsNullOrEmpty(show.Image.Medium))
@@ -231,7 +232,8 @@ namespace TV_Shows_Now
                 }
             }
         }
-        // Linkki TV Mazen API-sivuille
+        
+        // Link to TV Maze API site
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
                try
@@ -249,7 +251,7 @@ namespace TV_Shows_Now
                 }
         }
         
-        // Kuvan klikkaus
+        // Picture click
         public void pictureBoxShow_Click(object sender, EventArgs e)
         {
 
@@ -271,7 +273,7 @@ namespace TV_Shows_Now
 
         }
 
-        // Ohjelman nettisivun klikkaus
+        // Show's website link click
         private void officialWebsiteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (show != null && !string.IsNullOrEmpty(show.OfficialSite))

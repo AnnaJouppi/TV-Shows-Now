@@ -24,3 +24,4 @@ C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\runtimes\win-a
 C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Core.dll
 C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.dll
 C:\Users\annaj\source\repos\TV Shows Now\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\annaj\source\repos\TV Shows Now\obj\Debug\net8.0-windows\TV Shows Now.sourcelink.json

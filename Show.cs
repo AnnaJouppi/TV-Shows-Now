@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TV_Shows_Now
 {
-    //  Käytetään sisäkkäistä classia, koska json:n mukana tulee kaksi objektia
+    
+    // Using nested classes, because there are two objects coming with the json
     public class SearchResult
     {
         public double? Score { get; set; }
