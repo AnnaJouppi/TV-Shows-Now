@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TV Shows Now")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10c9730274ae45121680645eb1fce3f5294b69ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f526cf6f1e40995587bb52cbd34e1c84ebee513")]
 [assembly: System.Reflection.AssemblyProductAttribute("TV Shows Now")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TV Shows Now")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -25,13 +25,14 @@ namespace TV_Shows_Now
             InitializeComponent();
             client = new HttpClient();
         }
-        
+
         // changing certain parts as invisible when the app launches
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.Visible = false;
             description.Visible = false;
             webBrowser1.Visible = false;
+            showNameLink.Visible = false;
 
             castName1.Visible = false;
             castName2.Visible = false;
@@ -40,11 +41,12 @@ namespace TV_Shows_Now
 
             labelStarring.Visible = false;
             pictureBoxShow.Enabled = false;
-            officialWebsiteLink.Visible = false;
+            
 
             languageText.Visible = false;
             labelLanguage.Visible = false;
             helpText.Visible = false;
+            
 
         }
 
@@ -52,7 +54,7 @@ namespace TV_Shows_Now
         public async Task<List<SearchResult>> SearchShows(string query)
         {
 
-            {   
+            {
                 // Calling the api with a text that user inputs in the search field
                 var response = await client.GetStringAsync($"https://api.tvmaze.com/search/shows?q={query}");
 
@@ -74,9 +76,9 @@ namespace TV_Shows_Now
             var response = await client.GetStringAsync($"https://api.tvmaze.com/shows/{showId}/cast");
             var cast = JsonConvert.DeserializeObject<List<Cast>>(response);
 
-            if(cast == null)
-            { 
-                return new List<Cast>(); 
+            if (cast == null)
+            {
+                return new List<Cast>();
             }
 
             return cast;
@@ -85,23 +87,24 @@ namespace TV_Shows_Now
         // Clicking the search button
         private async void button1_Click(object sender, EventArgs e)
 
-        {   
+        {
             // Saving user's input text as button is clicked
             string query = textBox1.Text;
             dataGridView1.Visible = true;
             helpText.Visible = true;
 
-            
+
             // If query string is not empty or null
             if (!string.IsNullOrEmpty(query))
             {
                 var searchResults = await SearchShows(query);
 
-                
+
                 // Creating a list of show objects
                 var shows = searchResults.Select(sr => sr.Show).ToList();
 
-                dataGridView1.DataSource = shows.Select(s => new {
+                dataGridView1.DataSource = shows.Select(s => new
+                {
                     s?.Name,
                     s?.Type,
                     s?.Premiered,
@@ -128,11 +131,11 @@ namespace TV_Shows_Now
 
         public async void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             // Checking if user clicks the grid's header, returns nothing if true
             if (e.RowIndex == -1 || e.ColumnIndex == -1) { return; }
 
-            
+
             // Retrieve show's name from the first column and turn it into a string
             object cellValue = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
             string showName = (cellValue as string ?? "");
@@ -149,25 +152,50 @@ namespace TV_Shows_Now
                 show = JsonConvert.DeserializeObject<Show>(response);
             }
 
-            if (show != null) {
+            if (show != null)
+            {
                 var noNullShow = show;
 
-            if (noNullShow.Cast == null)
-            {
-                var castResults = await GetShowCast(show.Id);
-                noNullShow.Cast = castResults;
-            }
+                if (noNullShow.Cast == null)
+                {
+                    var castResults = await GetShowCast(show.Id);
+                    noNullShow.Cast = castResults;
+                }
             }
             // Change UI elements visible
 
             description.Visible = true;
             webBrowser1.Visible = true;
+            showNameLink.Visible = true;
+
+
+            if (show != null) 
+            { 
+            showNameLink.Text = show.Name;
+                if (show.OfficialSite != null)
+                {
+                    showNameLink.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    showNameLink.Cursor = Cursors.Default;
+                }
+            }
+
             if (show != null)
 
-            { // Usinng WebView2 to display show description
+            { // Using WebView2 to display show description
                 await webBrowser1.EnsureCoreWebView2Async(null);
-                webBrowser1.NavigateToString(show.Summary);
+                if (!string.IsNullOrEmpty(show.Summary))
+                {
+                    webBrowser1.NavigateToString(show.Summary);
+                }
+                else
+                {
+                    webBrowser1.NavigateToString("<em>Show description not available.</em>");
+                }
             }
+
             labelStarring.Visible = true;
             pictureBoxShow.Enabled = true;
             labelLanguage.Visible = true;
@@ -176,7 +204,7 @@ namespace TV_Shows_Now
             {
                 languageText.Text = show.Language;
             }
-            officialWebsiteLink.Visible = true;
+            
 
             // Only shows cast names when they are in show.Cast, otherwise show an empty string
             castName1.Text = "";
@@ -210,20 +238,23 @@ namespace TV_Shows_Now
                     }
                 }
             }
-            
-            // If the show has no website, the link is hidden
-            if (show != null) { 
-            if (show.OfficialSite == null)
+
+            // If show has an official website, cursor is a hand, otherwise default
+            if (show != null && !string.IsNullOrEmpty(show.OfficialSite))
             {
-                officialWebsiteLink.Visible = false;
+                pictureBoxShow.Cursor = Cursors.Hand;
             }
-}
+            else
+            {
+                pictureBoxShow.Cursor = Cursors.Default;
+            }
+            
 
             // Display show image in pictureBox
             if (show != null)
             {
                 if (show.Image != null && !string.IsNullOrEmpty(show.Image.Medium))
-                {
+                {      
                     pictureBoxShow.ImageLocation = show.Image.Medium;
                 }
                 else
@@ -232,32 +263,33 @@ namespace TV_Shows_Now
                 }
             }
         }
-        
+
         // Link to TV Maze API site
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-               try
+            try
+            {
+                var psi = new System.Diagnostics.ProcessStartInfo
                 {
-                    var psi = new System.Diagnostics.ProcessStartInfo
-                    {
-                        UseShellExecute = true,
-                        FileName = "https://www.tvmaze.com/"
-                    };
-                    System.Diagnostics.Process.Start(psi);
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show($"{exception}");
-                }
+                    UseShellExecute = true,
+                    FileName = "https://www.tvmaze.com/"
+                };
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"{exception}");
+            }
         }
-        
+
         // Picture click
         public void pictureBoxShow_Click(object sender, EventArgs e)
         {
 
             if (show != null && !string.IsNullOrEmpty(show.OfficialSite))
-            {
-               try {
+            {      
+                try
+                {
                     var psi = new System.Diagnostics.ProcessStartInfo
                     {
                         UseShellExecute = true,
@@ -265,16 +297,36 @@ namespace TV_Shows_Now
                     };
                     System.Diagnostics.Process.Start(psi);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     MessageBox.Show($"{exception}");
-                        }
+                }
             }
 
         }
 
         // Show's website link click
         private void officialWebsiteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (show != null && !string.IsNullOrEmpty(show.OfficialSite))
+            {
+                try
+                {
+                    var psi = new System.Diagnostics.ProcessStartInfo
+                    {
+                        UseShellExecute = true,
+                        FileName = show.OfficialSite
+                    };
+                    System.Diagnostics.Process.Start(psi);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show($"{exception}");
+                }
+            }
+        }
+
+        private void showName_Click(object sender, EventArgs e)
         {
             if (show != null && !string.IsNullOrEmpty(show.OfficialSite))
             {

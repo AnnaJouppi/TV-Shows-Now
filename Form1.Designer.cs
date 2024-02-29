@@ -42,10 +42,10 @@
             labelLanguage = new Label();
             languageText = new Label();
             helpText = new Label();
-            officialWebsiteLink = new LinkLabel();
             webBrowser1 = new Microsoft.Web.WebView2.WinForms.WebView2();
             label5 = new Label();
             linkLabel1 = new LinkLabel();
+            showNameLink = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxShow).BeginInit();
             ((System.ComponentModel.ISupportInitialize)webBrowser1).BeginInit();
@@ -53,6 +53,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.BackgroundColor = Color.LavenderBlush;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 155);
@@ -65,7 +66,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Candara", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(441, 9);
+            label1.Location = new Point(623, 9);
             label1.Name = "label1";
             label1.Size = new Size(176, 23);
             label1.TabIndex = 1;
@@ -74,7 +75,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(452, 49);
+            textBox1.Location = new Point(634, 49);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(149, 27);
             textBox1.TabIndex = 2;
@@ -82,14 +83,14 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Pink;
+            button1.BackColor = Color.LavenderBlush;
             button1.FlatAppearance.BorderColor = Color.HotPink;
             button1.FlatAppearance.BorderSize = 2;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(477, 89);
+            button1.Location = new Point(634, 89);
             button1.Name = "button1";
-            button1.Size = new Size(103, 31);
+            button1.Size = new Size(149, 31);
             button1.TabIndex = 3;
             button1.Text = "Search";
             button1.UseVisualStyleBackColor = false;
@@ -97,6 +98,7 @@
             // 
             // description
             // 
+            description.Anchor = AnchorStyles.Bottom;
             description.AutoSize = true;
             description.Font = new Font("Candara", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             description.Location = new Point(476, 493);
@@ -107,8 +109,8 @@
             // 
             // pictureBoxShow
             // 
-            pictureBoxShow.Cursor = Cursors.Hand;
-            pictureBoxShow.Location = new Point(1040, 151);
+            pictureBoxShow.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBoxShow.Location = new Point(1040, 155);
             pictureBoxShow.Name = "pictureBoxShow";
             pictureBoxShow.Size = new Size(210, 300);
             pictureBoxShow.TabIndex = 6;
@@ -117,9 +119,10 @@
             // 
             // labelStarring
             // 
+            labelStarring.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelStarring.AutoSize = true;
             labelStarring.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelStarring.Location = new Point(1049, 497);
+            labelStarring.Location = new Point(1045, 506);
             labelStarring.Name = "labelStarring";
             labelStarring.Size = new Size(69, 19);
             labelStarring.TabIndex = 7;
@@ -127,9 +130,10 @@
             // 
             // castName1
             // 
+            castName1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             castName1.AutoSize = true;
             castName1.Font = new Font("Candara", 12F);
-            castName1.Location = new Point(1155, 497);
+            castName1.Location = new Point(1151, 506);
             castName1.Name = "castName1";
             castName1.Size = new Size(49, 19);
             castName1.TabIndex = 8;
@@ -137,9 +141,10 @@
             // 
             // castName2
             // 
+            castName2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             castName2.AutoSize = true;
             castName2.Font = new Font("Candara", 12F);
-            castName2.Location = new Point(1155, 518);
+            castName2.Location = new Point(1151, 527);
             castName2.Name = "castName2";
             castName2.Size = new Size(50, 19);
             castName2.TabIndex = 9;
@@ -147,9 +152,10 @@
             // 
             // castName3
             // 
+            castName3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             castName3.AutoSize = true;
             castName3.Font = new Font("Candara", 12F);
-            castName3.Location = new Point(1155, 541);
+            castName3.Location = new Point(1151, 550);
             castName3.Name = "castName3";
             castName3.Size = new Size(51, 19);
             castName3.TabIndex = 10;
@@ -157,9 +163,10 @@
             // 
             // castName4
             // 
+            castName4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             castName4.AutoSize = true;
             castName4.Font = new Font("Candara", 12F);
-            castName4.Location = new Point(1155, 565);
+            castName4.Location = new Point(1151, 574);
             castName4.Name = "castName4";
             castName4.Size = new Size(50, 19);
             castName4.TabIndex = 11;
@@ -167,9 +174,10 @@
             // 
             // labelLanguage
             // 
+            labelLanguage.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelLanguage.AutoSize = true;
             labelLanguage.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelLanguage.Location = new Point(1049, 608);
+            labelLanguage.Location = new Point(1045, 617);
             labelLanguage.Name = "labelLanguage";
             labelLanguage.Size = new Size(81, 19);
             labelLanguage.TabIndex = 12;
@@ -177,9 +185,10 @@
             // 
             // languageText
             // 
+            languageText.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             languageText.AutoSize = true;
             languageText.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            languageText.Location = new Point(1155, 608);
+            languageText.Location = new Point(1151, 617);
             languageText.Name = "languageText";
             languageText.Size = new Size(42, 19);
             languageText.TabIndex = 13;
@@ -195,22 +204,10 @@
             helpText.TabIndex = 15;
             helpText.Text = "🌸 Click on a show title to display additional information";
             // 
-            // officialWebsiteLink
-            // 
-            officialWebsiteLink.AutoSize = true;
-            officialWebsiteLink.Font = new Font("Candara", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            officialWebsiteLink.LinkColor = Color.DeepPink;
-            officialWebsiteLink.Location = new Point(1049, 643);
-            officialWebsiteLink.Name = "officialWebsiteLink";
-            officialWebsiteLink.Size = new Size(114, 19);
-            officialWebsiteLink.TabIndex = 16;
-            officialWebsiteLink.TabStop = true;
-            officialWebsiteLink.Text = "Official Website";
-            officialWebsiteLink.LinkClicked += officialWebsiteLink_LinkClicked;
-            // 
             // webBrowser1
             // 
             webBrowser1.AllowExternalDrop = true;
+            webBrowser1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             webBrowser1.CreationProperties = null;
             webBrowser1.DefaultBackgroundColor = Color.White;
             webBrowser1.ForeColor = Color.Gray;
@@ -245,16 +242,29 @@
             linkLabel1.Text = "TV Maze API";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // showNameLink
+            // 
+            showNameLink.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            showNameLink.AutoSize = true;
+            showNameLink.Font = new Font("Candara", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            showNameLink.ForeColor = Color.DeepPink;
+            showNameLink.Location = new Point(1045, 470);
+            showNameLink.Name = "showNameLink";
+            showNameLink.Size = new Size(59, 23);
+            showNameLink.TabIndex = 20;
+            showNameLink.Text = "label2";
+            showNameLink.Click += showName_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MistyRose;
             ClientSize = new Size(1441, 806);
+            Controls.Add(showNameLink);
             Controls.Add(linkLabel1);
             Controls.Add(label5);
             Controls.Add(webBrowser1);
-            Controls.Add(officialWebsiteLink);
             Controls.Add(helpText);
             Controls.Add(languageText);
             Controls.Add(labelLanguage);
@@ -295,9 +305,9 @@
         private Label labelLanguage;
         private Label languageText;
         private Label helpText;
-        private LinkLabel officialWebsiteLink;
         private Microsoft.Web.WebView2.WinForms.WebView2 webBrowser1;
         private Label label5;
         private LinkLabel linkLabel1;
+        private Label showNameLink;
     }
 }
