@@ -30,6 +30,7 @@
 
 **Screenshot:**
   
-![tv-shows-now-screenshot](https://github.com/AnnaJouppi/TV-Shows-Now/assets/62011685/be699187-958b-4742-b416-4fc2116ce335)
+![tv-shows-now-screenshot](https://github.com/AnnaJouppi/TV-Shows-Now/assets/62011685/9637c233-437b-48fd-8373-0fa44a4ef6ef)
+
 
 
